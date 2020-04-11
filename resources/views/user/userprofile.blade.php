@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h4>User Profile</h4>
+    <h4>Profil Pengguna</h4>
     <div class="card">
         <div class="card-body">
             <div class="row px-3">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="row">
-                        <h6>ID Device Pengguna</h6>
+                        <h6>ID Perangkat Pengguna</h6>
                     </div>
                     <div class="row">
                         <h5><b>{{$users->deviceid}}</b></h5>
