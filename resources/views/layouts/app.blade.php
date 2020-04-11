@@ -53,7 +53,7 @@
                                 <a class="nav-link text-white btn btn-info" href="#">Lokasi Daerah Rawan Kecelakaan</a>
                             </li>
                             <li class="nav-item px-1">
-                                <a class="nav-link text-white btn btn-info" href="#">Perangkat Saya</a>
+                                <a class="nav-link text-white btn btn-info" href="{{ route('device') }}">Perangkat Saya</a>
                             </li>
                             <li class="nav-item px-1">
                                 <a class="nav-link text-white btn btn-info" href="#">Statisktik</a>

@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
 Route::get('/dashboard/user', 'UserController@index')->name('userprofile');
+
+Route::get('/dashboard/device', 'DeviceController@index')->name('device');
