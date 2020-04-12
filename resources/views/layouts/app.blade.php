@@ -50,7 +50,7 @@
                             @endif
                         @else
                             <li class="nav-item px-1">
-                                <a class="nav-link text-white btn btn-info" href="#">Lokasi Daerah Rawan Kecelakaan</a>
+                                <a class="nav-link text-white btn btn-info" href="{{ route('location-by-list') }}">Lokasi Daerah Rawan Kecelakaan</a>
                             </li>
                             <li class="nav-item px-1">
                                 <a class="nav-link text-white btn btn-info" href="{{ route('device') }}">Perangkat Saya</a>
