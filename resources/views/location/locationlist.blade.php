@@ -33,6 +33,7 @@
                 <td>{{$lokasi->lng}}</td>
                 <td>{{$lokasi->alamat}}</td>
                 <td>
+                    <a class="nav-link text-white btn btn-success" href="/dashboard/location/by-list/{{$lokasi->locationid}}">Detail</a> &nbsp;
                     <a class="nav-link text-white btn btn-info" href="https://www.google.com/maps/place/{{$lokasi->lat}},{{$lokasi->lng}}" target="_blank">Lihat di Google Maps</a>
                 </td>
             </tr>
