@@ -26,3 +26,5 @@ Route::get('/dashboard/device', 'DeviceController@index')->name('device');
 Route::get('/dashboard/location/by-list', 'LocationController@index')->name('location-by-list');
 
 Route::get('/dashboard/location/by-list/{locationid}', 'DetailLocationController@index')->name('location-by-list-detail');
+
+Route::get('/dashboard/location/add-location', 'LocationController@addLocation')->name('add-location');
