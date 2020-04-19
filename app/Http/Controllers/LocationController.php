@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Location;
 use Illuminate\Http\Request;
+use Auth;
+use App\User;
 
 class LocationController extends Controller
 {
@@ -14,8 +16,9 @@ class LocationController extends Controller
      */
     public function index()
     {
+        $users = User::where('id', Auth::user()->id)->first();
         $locations = Location::all();
-        return view('location.locationlist',['locations' => $locations]);
+        return view('location.locationlist',['locations' => $locations, 'users' => $users]);
     }
 
     /**
@@ -23,9 +26,9 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function addLocation()
     {
-        //
+        return view('location.addlocation');
     }
 
     /**
