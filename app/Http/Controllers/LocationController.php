@@ -6,6 +6,8 @@ use App\Location;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use Illuminate\Support\Facades\DB; 
+use Response;
 
 class LocationController extends Controller
 {
@@ -16,8 +18,9 @@ class LocationController extends Controller
      */
     public function index()
     {
+        $verified = 1;
         $users = User::where('id', Auth::user()->id)->first();
-        $locations = Location::all();
+        $locations = Location::where('verified', $verified)->get();
         return view('location.locationlist',['locations' => $locations, 'users' => $users]);
     }
 
@@ -28,7 +31,11 @@ class LocationController extends Controller
      */
     public function addLocation()
     {
-        return view('location.addlocation');
+        $lastlocation = DB::table('locations')->latest('locationid')->first();
+        $lastlocationid = $lastlocation->locationid;
+        $extractedNumLocationId = filter_var($lastlocationid, FILTER_SANITIZE_NUMBER_INT);
+        $newNumLocationId = $extractedNumLocationId + 1;
+        return view('location.addlocation',['lastlocationid' => $lastlocationid, 'extractedNumLocationId' => $extractedNumLocationId, 'newNumLocationId' => $newNumLocationId]);
     }
 
     /**
