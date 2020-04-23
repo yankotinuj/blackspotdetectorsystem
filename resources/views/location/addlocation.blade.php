@@ -5,6 +5,9 @@
     <div class="card text-white bg-info">
         <div class="card-header pt-4">
             <h4>Tambah Lokasi</h4>
+            <h5>{{$lastlocationid}}</h5>
+            <h5>{{$extractedNumLocationId}}</h5>
+            <h5>{{$newNumLocationId}}</h5>
         </div>
         <div class="card-body bg-light text-body">  
             <form id="tambahlokasi" method="POST" action="javascript:void(0)">
