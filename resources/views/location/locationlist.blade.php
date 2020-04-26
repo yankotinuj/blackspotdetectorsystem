@@ -67,6 +67,9 @@
                 </td>
             </tr>
             @endforeach
+            @if(!empty($errorMsg))
+                <div class="alert alert-danger"> {{ $errorMsg }}</div>
+            @endif
         </tbody>
     </table>
 
