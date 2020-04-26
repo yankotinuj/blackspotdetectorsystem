@@ -31,11 +31,13 @@ class LocationController extends Controller
      */
     public function addLocation()
     {
+        $users = User::where('id', Auth::user()->id)->first();
         $lastlocation = DB::table('locations')->latest('locationid')->first();
         $lastlocationid = $lastlocation->locationid;
         $extractedNumLocationId = filter_var($lastlocationid, FILTER_SANITIZE_NUMBER_INT);
         $newNumLocationId = $extractedNumLocationId + 1;
-        return view('location.addlocation',['lastlocationid' => $lastlocationid, 'extractedNumLocationId' => $extractedNumLocationId, 'newNumLocationId' => $newNumLocationId]);
+        $stringNewNumLocationId = strval($newNumLocationId);
+        return view('location.addlocation',['users' => $users, 'lastlocationid' => $lastlocationid, 'extractedNumLocationId' => $extractedNumLocationId, 'newNumLocationId' => $newNumLocationId, 'stringNewNumLocationId' => $stringNewNumLocationId]);
     }
 
     /**
@@ -46,7 +48,18 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Lokasi = new Location;
+        $Lokasi->locationid = $request->locationid;
+        $Lokasi->lat = $request->lat;
+        $Lokasi->lng = $request->lng;
+        $Lokasi->alamat = $request->alamat;
+        $Lokasi->verified = $request->verified;
+        $Lokasi->addedby = $request->addedby;
+        $Lokasi->save();
+
+        return Response::json([
+            'action' => 'save_tambahlokasi'
+                ], 201); // Status code here
     }
 
     /**
