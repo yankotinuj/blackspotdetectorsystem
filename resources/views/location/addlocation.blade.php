@@ -17,7 +17,7 @@
                     <div class="row">
                         <label for="latitude" class="col-4 col-form-label">Latitude Lokasi</label>
                             <div class="col-8">
-                                <input class="form-control" type="number" placeholder="Latitude Lokasi" id="lat" required>
+                                <input class="form-control" type="number" step="any" placeholder="Latitude Lokasi" id="lat" required>
                             </div>
                     </div>
                     <div class="row pt-2">
@@ -34,7 +34,7 @@
                     <div class="row">
                         <label for="longitude" class="col-4 col-form-label">Longitude Lokasi</label>
                             <div class="col-8">
-                                <input class="form-control" type="number" placeholder="Longitude Lokasi" id="lng" required>
+                                <input class="form-control" type="number" step="any" placeholder="Longitude Lokasi" id="lng" required>
                             </div>
                     </div>
                     <div class="row pt-2">
@@ -83,16 +83,20 @@
                             addedby: '{{$users->username}}'
                         }, options)
                         .then(function (response)
-                        {
-                            Command: swal("Sukses Menyimpan", "Lokasi Berhasil Ditambahkan", "success");
+                        { 
                             console.log(response);
                             $("#submitForm").html('Simpan');
+                            Command: swal("Sukses Menyimpan", "Lokasi Berhasil Ditambahkan. Lokasi yang Anda tambahkan perlu diverifikasi oleh Admin untuk ditampilkan di daftar daerah rawan kecelakaan.", "success");
+                            setTimeout(function()
+                            {
+                                location.reload(); //Untuk refresh halaman
+                            },7000); // 7000 -> ms = 7 Detik
                         })
                         .catch(function (error)
                         {
-                            Command: swal("Gagal Menyimpan", "Lokasi Gagal Ditambahkan atau Form Belum Lengkap Diisi", "error");
-                            $("#submitForm").html('Simpan');
                             console.log(error);
+                            $("#submitForm").html('Simpan');
+                            Command: swal("Gagal Menyimpan", "Lokasi Gagal Ditambahkan atau Form Belum Lengkap Diisi", "error");
                         });
                     }
                 </script>
