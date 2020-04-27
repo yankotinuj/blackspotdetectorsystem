@@ -57,9 +57,7 @@ class LocationController extends Controller
         $Lokasi->addedby = $request->addedby;
         $Lokasi->save();
 
-        return Response::json([
-            'action' => 'save_tambahlokasi'
-                ], 201); // Status code here
+        return Response::json(['action' => 'save_tambahlokasi', $request], 201); // Status code here
     }
 
     /**
