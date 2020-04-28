@@ -16,19 +16,18 @@
     <div class="card my-3">
         <div class="card-body">
             <div class="row px-3">
-                @if($users->username == 'admin')
                 <div class="col-sm-4">
                     <a class="btn btn-info btn-block text-white" href="{{ route('add-location') }}" role="button">Tambah Lokasi</a>
                 </div>
+                @if($users->username == 'admin')
                 <div class="col-sm-4">
-                    <a class="btn btn-info btn-block text-white" href="#" role="button">Daftar Permintaan Tambah Lokasi</a>
+                    <a class="btn btn-info btn-block text-white" href="{{ route('location-added-by-user') }}" role="button">
+                        Permintaan Tambah Lokasi <span class="badge badge-danger text-white">{{$totallocationadded}}</span>
+                    </a>
                 </div>
                 @endif
                 <div class="col-sm-4">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-info btn-block text-white" data-toggle="modal" data-target="#modalTambahLokasi">
-                        Tambah Lokasi
-                    </button>
+                    
                 </div>
                 <div class="col-sm-4">
 
@@ -58,7 +57,7 @@
                 <td>{{$lokasi->lng}}</td>
                 <td>{{$lokasi->alamat}}</td>
                 <td>
-                    <a class="text-white btn btn-success" role="button" href="/dashboard/location/by-list/{{$lokasi->locationid}}">Detail</a> &nbsp;
+                    <a class="text-white btn btn-success" role="button" href="{{ route('location-by-list-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
                     <a class="btn btn-light" role="button" href="https://www.google.com/maps/place/{{$lokasi->lat}},{{$lokasi->lng}}" target="_blank">Lihat</a> &nbsp;
                     @if($users->username == 'admin')
                     <a class="text-white btn btn-info" role="button" href="/dashboard/location/by-list/edit/{{$lokasi->locationid}}">Edit</a> &nbsp;
