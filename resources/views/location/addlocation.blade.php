@@ -80,7 +80,12 @@
                             lng: jQuery('#lng').val(),
                             alamat: jQuery('#alamat').val(),
                             verified: 0,
-                            addedby: '{{$users->username}}'
+                            addedby: '{{$users->username}}',
+                            kejadian: 0,
+                            meninggaldunia: 0,
+                            lukaberat: 0,
+                            lukaringan: 0,
+                            koefisien: 0
                         }, options)
                         .then(function (response)
                         { 
@@ -89,7 +94,7 @@
                             Command: swal("Sukses Menyimpan", "Lokasi Berhasil Ditambahkan. Lokasi yang Anda tambahkan perlu diverifikasi oleh Admin untuk ditampilkan di daftar daerah rawan kecelakaan.", "success");
                             setTimeout(function()
                             {
-                                location.reload(); //Untuk refresh halaman
+                                window.location.replace("{{ route('location-by-list') }}"); //Pindah ke halaman sebelumnya
                             },7000); // 7000 -> ms = 7 Detik
                         })
                         .catch(function (error)
