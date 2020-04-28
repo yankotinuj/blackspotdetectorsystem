@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\DetailLocation;
 use Illuminate\Http\Request;
 use App\Location;
-
+use Response;
+use Illuminate\Support\Facades\DB;
 
 class DetailLocationController extends Controller
 {
@@ -19,6 +20,38 @@ class DetailLocationController extends Controller
         $locations = Location::where('locationid', $locationid)->first();
         $detailLocations = DetailLocation::where('locationid', $locationid)->first();
         return view('location.detaillocation', ['locations' => $locations, 'detailLocations' => $detailLocations]);
+    }
+
+    public function adddetail($locationid)
+    {
+        $locations = Location::where('locationid', $locationid)->first();
+        $detailLocations = DetailLocation::where('locationid', $locationid)->first();
+        return view('location.locationaddeddetail', ['locations' => $locations, 'detailLocations' => $detailLocations]);
+    }
+    /*public function adddetail()
+    {
+        return view('location.locationaddeddetail');
+    }*/
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\DetailLocation  $detailLocation
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $locationid)
+    {
+        $Detail = DB::table('detail_locations')->where('locationid', $locationid)
+        ->update([
+            'kejadian' => $request->kejadian,
+            'meninggaldunia' => $request->meninggaldunia,
+            'lukaberat' => $request->lukaberat,
+            'lukaringan' => $request->lukaringan,
+            'koefisien' => $request->koefisien
+        ]);
+
+        return $request;
     }
 
     /**
@@ -60,18 +93,6 @@ class DetailLocationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(DetailLocation $detailLocation)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DetailLocation  $detailLocation
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, DetailLocation $detailLocation)
     {
         //
     }
