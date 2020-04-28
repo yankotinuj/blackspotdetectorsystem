@@ -8,6 +8,7 @@ use Auth;
 use App\User;
 use Illuminate\Support\Facades\DB; 
 use Response;
+use App\DetailLocation;
 
 class LocationController extends Controller
 {
@@ -19,9 +20,10 @@ class LocationController extends Controller
     public function index()
     {
         $verified = 1;
+        $totallocationadded = Location::where('verified', 0)->count();
         $users = User::where('id', Auth::user()->id)->first();
         $locations = Location::where('verified', $verified)->get();
-        return view('location.locationlist',['locations' => $locations, 'users' => $users]);
+        return view('location.locationlist',['locations' => $locations, 'users' => $users, 'totallocationadded' => $totallocationadded]);
     }
 
     /**
@@ -57,6 +59,15 @@ class LocationController extends Controller
         $Lokasi->addedby = $request->addedby;
         $Lokasi->save();
 
+        $Detail = New DetailLocation;
+        $Detail->locationid = $request->locationid;
+        $Detail->kejadian = $request->kejadian;
+        $Detail->meninggaldunia = $request->meninggaldunia;
+        $Detail->lukaberat = $request->lukaberat;
+        $Detail->lukaringan = $request->lukaringan;
+        $Detail->koefisien = $request->koefisien;
+        $Detail->save();
+
         return Response::json(['action' => 'save_tambahlokasi', $request], 201); // Status code here
     }
 
@@ -66,9 +77,12 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function addedlocation()
     {
-        //
+        $verified = 0;
+        $users = User::where('id', Auth::user()->id)->first();
+        $locations = Location::where('verified', $verified)->get();
+        return view('location.locationadded',['locations' => $locations, 'users' => $users]);
     }
 
     /**
