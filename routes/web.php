@@ -23,6 +23,14 @@ Route::get('/dashboard/user', 'UserController@index')->name('userprofile');
 
 Route::get('/dashboard/device', 'DeviceController@index')->name('device');
 
+Route::get('/dashboard/location/added-by-user', 'LocationController@addedlocation')->name('location-added-by-user');
+
+Route::get('/dashboard/location/added-by-user/{locationid}', 'DetailLocationController@index')->name('location-added-by-user-detail');
+
+Route::get('/dashboard/location/added-by-user/{locationid}/add-detail', 'DetailLocationController@adddetail')->name('location-added-by-user-detail-add');
+
+//Route::post('/dashboard/location/added-by-user/{locationid}/add-detail/update', 'DetailLocationController@update')->name('location-added-by-user-detail-add-update');
+
 Route::get('/dashboard/location/by-list', 'LocationController@index')->name('location-by-list');
 
 Route::get('/dashboard/location/by-list/{locationid}', 'DetailLocationController@index')->name('location-by-list-detail');
