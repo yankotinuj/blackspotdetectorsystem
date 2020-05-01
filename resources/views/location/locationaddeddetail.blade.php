@@ -3,9 +3,13 @@
 @section('content')
 <div class="container">
     <h4>Detail Lokasi Daerah Rawan Kecelakaan</h4>
-    <h5><b>ID Lokasi : {{$detailLocations->locationid}}</b></h5>
-    <h5><b>Ditambahkan oleh : {{$locations->addedby}}</b></h5>
-    <h5><b>Status : Belum di Verifikasi</b></h5>
+    @if ($locations->verified == 0)
+        <h5><b>ID Lokasi : {{$detailLocations->locationid}}</b></h5>
+        <h5><b>Ditambahkan oleh : {{$locations->addedby}}</b></h5>
+        <h5><b>Status : Belum di Verifikasi</b></h5>
+    @else
+        <h5><b>ID Lokasi : {{$detailLocations->locationid}}</b></h5>
+    @endif
     <form id="tambahdetaillokasi" method="post" action="javascript:void(0)">
         <div class="card">
             <div class="card-body">
