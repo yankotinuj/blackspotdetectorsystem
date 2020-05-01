@@ -25,19 +25,18 @@
                         Permintaan Tambah Lokasi <span class="badge badge-danger text-white">{{$totallocationadded}}</span>
                     </a>
                 </div>
+                <div class="col-sm-4">
+                    <a class="btn btn-info btn-block text-white" href="{{ route('location-manage') }}" role="button">
+                        Kelola Lokasi
+                    </a>
+                </div>
                 @endif
-                <div class="col-sm-4">
-                    
-                </div>
-                <div class="col-sm-4">
-
-                </div>
             </div>
         </div>
     </div>
     
 
-    <table class="table table-striped table-dark">
+    <table class="table table-striped table-dark table-hover">
         <thead>
             <tr>
                 <th scope="col">No</th>
@@ -59,10 +58,6 @@
                 <td>
                     <a class="text-white btn btn-success" role="button" href="{{ route('location-by-list-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
                     <a class="btn btn-light" role="button" href="https://www.google.com/maps/place/{{$lokasi->lat}},{{$lokasi->lng}}" target="_blank">Lihat</a> &nbsp;
-                    @if($users->username == 'admin')
-                    <a class="text-white btn btn-info" role="button" href="/dashboard/location/by-list/edit/{{$lokasi->locationid}}">Edit</a> &nbsp;
-                    <a class="text-white btn btn-danger" role="button" href="/dashboard/location/by-list/delete/{{$lokasi->locationid}}">Delete</a> &nbsp;
-                    @endif
                 </td>
             </tr>
             @endforeach
