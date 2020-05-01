@@ -26,6 +26,20 @@ class LocationController extends Controller
         return view('location.locationlist',['locations' => $locations, 'users' => $users, 'totallocationadded' => $totallocationadded]);
     }
 
+    public function indexManageLocation()
+    {
+        if (Auth::user()->username == 'admin')
+        {
+            $locations = Location::where('verified', 1)->get();
+            return view('location.managelocation',['locations' => $locations]);
+        }
+        else
+        {
+            alert()->error('Anda tidak memiliki hak akses!', 'Aksi Dilarang!')->persistent("Close");
+            return back();
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -82,7 +96,42 @@ class LocationController extends Controller
         $verified = 0;
         $users = User::where('id', Auth::user()->id)->first();
         $locations = Location::where('verified', $verified)->get();
-        return view('location.locationadded',['locations' => $locations, 'users' => $users]);
+        $totallocationadded = Location::where('verified', 0)->count();
+        return view('location.locationadded',['locations' => $locations, 'users' => $users, 'totallocationadded' => $totallocationadded]);
+    }
+
+    public function delete($locationid)
+    {
+        if (Auth::user()->username == 'admin'){
+            DB::table('locations')->where('locationid', $locationid)->delete();
+            DB::table('detail_locations')->where('locationid', $locationid)->delete();
+            return back();
+        }
+        else
+        {
+            alert()->error('Anda tidak memiliki hak akses!', 'Aksi Dilarang!')->persistent("Close");
+            return back();
+        }
+    }
+
+    public function verifyLocation($locationid)
+    {
+        if (Auth::user()->username == 'admin'){
+            $addedLocation = Location::where('verified', 0)->where('locationid', $locationid)
+            ->update(['verified' => 1]);
+            
+            /*DB::table('locations')->where('locationid', $locationid)->update(
+                [
+                    'verified' => 1
+                ]
+            );*/
+            return back();
+        }
+        else
+        {
+            alert()->error('Anda tidak memiliki hak akses!', 'Aksi Dilarang!')->persistent("Close");;
+            return back();
+        }
     }
 
     /**
