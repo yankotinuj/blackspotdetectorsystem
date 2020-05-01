@@ -23,13 +23,35 @@ Route::get('/dashboard/user', 'UserController@index')->name('userprofile');
 
 Route::get('/dashboard/device', 'DeviceController@index')->name('device');
 
+/* ========== Bagian Menu Permintaan Tambah Lokasi ========== */
+
 Route::get('/dashboard/location/added-by-user', 'LocationController@addedlocation')->name('location-added-by-user');
 
 Route::get('/dashboard/location/added-by-user/{locationid}', 'DetailLocationController@index')->name('location-added-by-user-detail');
 
 Route::get('/dashboard/location/added-by-user/{locationid}/add-detail', 'DetailLocationController@adddetail')->name('location-added-by-user-detail-add');
 
+Route::get('/dashboard/location/added-by-user/{locationid}/delete', 'LocationController@delete')->name('location-added-by-user-delete');
+
+Route::get('/dashboard/location/added-by-user/{locationid}/verify', 'LocationController@verifyLocation')->name('location-added-by-user-verify');
+
 //Route::post('/dashboard/location/added-by-user/{locationid}/add-detail/update', 'DetailLocationController@update')->name('location-added-by-user-detail-add-update');
+
+/* ========== ==================================== ========== */
+
+/* =============== Bagian Menu Kelola Lokasi ================ */
+
+Route::get('/dashboard/location/manage', 'LocationController@indexManageLocation')->name('location-manage');
+
+Route::get('/dashboard/location/manage/{locationid}/edit', 'LocationController@edit')->name('location-manage-edit');
+
+Route::get('/dashboard/location/manage/{locationid}/detail', 'DetailLocationController@index')->name('location-manage-detail');
+
+Route::get('/dashboard/location/manage/{locationid}/detail/edit', 'DetailLocationController@adddetail')->name('location-manage-detail-edit');
+
+Route::get('/dashboard/location/manage/{locationid}/delete', 'LocationController@delete')->name('location-manage-delete');
+
+/* ========== ==================================== ========== */
 
 Route::get('/dashboard/location/by-list', 'LocationController@index')->name('location-by-list');
 

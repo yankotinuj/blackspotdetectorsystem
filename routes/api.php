@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/dashboard/location/add-location/save', 'LocationController@store')->name('save-location');
 
 Route::post('/dashboard/location/added-by-user/{locationid}/add-detail/update', 'DetailLocationController@update')->name('location-added-by-user-detail-add-update');
+
+//Route::post('/dashboard/location/added-by-user/{locationid}/verify', 'LocationController@verifyLocation')->name('location-added-by-user-verify');
