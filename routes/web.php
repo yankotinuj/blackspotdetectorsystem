@@ -53,6 +53,8 @@ Route::get('/dashboard/location/manage/{locationid}/delete', 'LocationController
 
 /* ========== ==================================== ========== */
 
+Route::get('/dashboard/location/by-maps', 'MapsController@index')->name('location-by-maps');
+
 Route::get('/dashboard/location/by-list', 'LocationController@index')->name('location-by-list');
 
 Route::get('/dashboard/location/by-list/{locationid}', 'DetailLocationController@index')->name('location-by-list-detail');

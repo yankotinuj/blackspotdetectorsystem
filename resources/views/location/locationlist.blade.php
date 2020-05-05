@@ -9,7 +9,7 @@
             <a class="nav-link active" href="#">Daftar</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Peta</a>
+            <a class="nav-link" href="{{ route('location-by-maps') }}">Peta</a>
         </li>
     </ul>
 
