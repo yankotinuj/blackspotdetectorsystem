@@ -23,6 +23,8 @@ Route::get('/dashboard/user', 'UserController@index')->name('userprofile');
 
 Route::get('/dashboard/device', 'DeviceController@index')->name('device');
 
+Route::get('/dashboard/statistics', 'StatisticController@index')->name('statistics');
+
 /* ========== Bagian Menu Permintaan Tambah Lokasi ========== */
 
 Route::get('/dashboard/location/added-by-user', 'LocationController@addedlocation')->name('location-added-by-user');

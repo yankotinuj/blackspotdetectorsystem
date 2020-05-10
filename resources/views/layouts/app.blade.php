@@ -59,7 +59,7 @@
                                 <a class="nav-link text-white btn btn-info" href="{{ route('device') }}">Perangkat Saya</a>
                             </li>
                             <li class="nav-item px-1">
-                                <a class="nav-link text-white btn btn-info" href="#">Statisktik</a>
+                                <a class="nav-link text-white btn btn-info" href="{{ route('statistics') }}">Statisktik</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
