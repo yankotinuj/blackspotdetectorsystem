@@ -18,22 +18,14 @@ class StatisticController extends Controller
         $userStatistics = Statistic::where('deviceid', $users->deviceid)->get();
         $countUserStatistics = Statistic::where('deviceid', $users->deviceid)->count();
 
-        $sumSpeed1500m = Statistic::where('deviceid', $users->deviceid)->avg('spd_1500m');
-        $sumSpeed1000m = Statistic::where('deviceid', $users->deviceid)->avg('spd_1000m');
-        $sumSpeed500m = Statistic::where('deviceid', $users->deviceid)->avg('spd_500m');
-        $sumSpeed10m = Statistic::where('deviceid', $users->deviceid)->avg('spd_10m');
-
-        /*foreach($userStatistics as $stat)
-        {
-            $sumSpeed1500m += $stat->spd_1500m;
-            $sumSpeed1000m += $stat->spd_1000m;
-            $sumSpeed500m += $stat->spd_500m;
-            $sumSpeed10m += $stat->spd_10m;
-        }*/
+        $avgSpeed1500m = Statistic::where('deviceid', $users->deviceid)->avg('spd_1500m');
+        $avgSpeed1000m = Statistic::where('deviceid', $users->deviceid)->avg('spd_1000m');
+        $avgSpeed500m = Statistic::where('deviceid', $users->deviceid)->avg('spd_500m');
+        $avgSpeed10m = Statistic::where('deviceid', $users->deviceid)->avg('spd_10m');
 
         $statisticsChart = new StatisticsChart;
         $statisticsChart->labels(['Jarak 1500 M', 'Jarak 1000 M', 'Jarak 500 M', 'Jarak 10 M']);
-        $statisticsChart->dataset('Kecepatan dalam KM/J', 'bar', [$sumSpeed1500m, $sumSpeed1000m, $sumSpeed500m, $sumSpeed10m]);
+        $statisticsChart->dataset('Kecepatan dalam KM/J', 'bar', [$avgSpeed1500m, $avgSpeed1000m, $avgSpeed500m, $avgSpeed10m]);
         return view ('statistic.statistics', ['users' => $users, 'statisticsChart' => $statisticsChart]);
     }
 }
