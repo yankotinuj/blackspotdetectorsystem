@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Location;
+use App\Statistic;
+use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = User::where('id', Auth::user()->id)->first();
+        $totallocationadded = Location::where('verified', 1)->count();
+        $countUserStatistics = Statistic::where('deviceid', $users->deviceid)->count();
+
+        $avgSpeed1500m = Statistic::where('deviceid', $users->deviceid)->avg('spd_1500m');
+        $avgSpeed1000m = Statistic::where('deviceid', $users->deviceid)->avg('spd_1000m');
+        $avgSpeed500m = Statistic::where('deviceid', $users->deviceid)->avg('spd_500m');
+        $avgSpeed10m = Statistic::where('deviceid', $users->deviceid)->avg('spd_10m');
+
+        return view('home', ['users' => $users, 'totallocationadded' => $totallocationadded,
+        'countUserStatistics' => $countUserStatistics, 'avgSpeed1500m' => round($avgSpeed1500m),
+        'avgSpeed1000m' => round($avgSpeed1000m), 'avgSpeed500m' => round($avgSpeed500m),
+        'avgSpeed10m' => round($avgSpeed10m)]);
     }
 }
