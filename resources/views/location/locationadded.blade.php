@@ -11,7 +11,7 @@
                     Tidak ada permintaan tambah lokasi.
                 </div>
             @else
-                <table class="table table-striped table-dark table-hover">
+                <table class="table table-striped table-hover">
                     <thead>
                     <tr>
                         <th scope="col">No</th>

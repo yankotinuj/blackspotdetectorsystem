@@ -6,7 +6,7 @@
             <h4>Kelola Lokasi</h4>
         </div>
         <div class="card-body bg-light text-body">  
-                <table class="table table-striped table-dark table-hover">
+                <table class="table table-striped table-hover">
                     <thead>
                     <tr>
                         <th scope="col">No</th>

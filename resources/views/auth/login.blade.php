@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container d-md-flex">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
+        <div class="col-md-6">
+            <h1 class="display-4"><b>Login</b></h1>
+            <h1 class="display-5"><b>Untuk dapat mengakses informasi lebih lengkap!</b></h1>
+        </div>
+        <div class="col-md-6">
+            
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -45,7 +46,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('Ingatkan Saya') }}
                                     </label>
                                 </div>
                             </div>
@@ -59,14 +60,13 @@
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('Lupa Password?') }}
                                     </a>
                                 @endif
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

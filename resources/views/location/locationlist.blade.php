@@ -36,7 +36,7 @@
     </div>
     
 
-    <table class="table table-striped table-dark table-hover">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th scope="col">No</th>
@@ -57,7 +57,7 @@
                 <td>{{$lokasi->alamat}}</td>
                 <td>
                     <a class="text-white btn btn-success" role="button" href="{{ route('location-by-list-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
-                    <a class="btn btn-light" role="button" href="https://www.google.com/maps/place/{{$lokasi->lat}},{{$lokasi->lng}}" target="_blank">Lihat</a> &nbsp;
+                    <a class="btn btn-primary" role="button" href="https://www.google.com/maps/place/{{$lokasi->lat}},{{$lokasi->lng}}" target="_blank">Lihat</a> &nbsp;
                 </td>
             </tr>
             @endforeach
