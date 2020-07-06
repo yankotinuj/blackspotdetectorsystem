@@ -100,7 +100,11 @@
                             Sistem untuk mendeteksi dan memonitor pengguna terhadap daerah rawan kecelakaan.
                         </p>
                         <a class="btn btn-success btn-lg" href="{{ route('about') }}" role="button">Pelajari Lebih Lanjut</a> &nbsp;
+                        @guest
                         <a class="btn btn-primary btn-lg" href="{{ route('login') }}" role="button">Login</a>
+                        @else
+                        <a class="btn btn-primary btn-lg" href="{{ route('home') }}" role="button">Login</a>
+                        @endguest
                     </div>
                     <div class="col-md-6">
                     <img src="{{ asset('img/landingpageimage.jpg') }}" class="img-fluid" alt="Blackspot Detector System">
