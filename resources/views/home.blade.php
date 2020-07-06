@@ -3,6 +3,21 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center pb-3">
+        
+        <div class="col-md-6 pb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Quick Info</b></h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Username : <b>{{$users->username}}</b></li>
+                        <li class="list-group-item">ID Device : <b>{{$users->deviceid}}</b></li>
+                        <li class="list-group-item">Perangkat : <b>{{$device->devicename}} {{$device->deviceversion}}</b></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        
         <div class="col-md-6 pb-3">
             <div class="card">
                 <div class="card-body">
@@ -13,6 +28,21 @@
                 </div>
             </div>
         </div>
+        
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-md-6 pb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Jumlah Melewati Lokasi Daerah Rawan Kecelakaan</b></h5>
+                    <h1 class="card-text text-center display-3"><b>{{ $countUserStatistics }}</b></h2>
+                    <p class="card-text text-center">Anda telah melewati sebanyak {{ $countUserStatistics }} lokasi daerah rawan kecelakaan dengan kendaraan Anda.</p>
+                    <a class="btn btn-primary" role="button" href="{{ route('statistics') }}" class="card-link">Lihat Lebih Lanjut</a>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -62,29 +92,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-md-6 pb-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><b>Jumlah Melewati Lokasi Daerah Rawan Kecelakaan</b></h5>
-                    <h1 class="card-text text-center display-3"><b>{{ $countUserStatistics }}</b></h2>
-                    <p class="card-text text-center">Anda telah melewati sebanyak {{ $countUserStatistics }} lokasi daerah rawan kecelakaan dengan kendaraan Anda.</p>
-                    <a class="btn btn-primary" role="button" href="{{ route('statistics') }}" class="card-link">Lihat Lebih Lanjut</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
 @endsection
