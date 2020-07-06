@@ -96,20 +96,11 @@
                     <div class="col-md-6">
                         <h1 class="display-3"><b>Tentang Kami</b></h1>
                         <p class="lead">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Sed pretium sapien nec nunc tincidunt iaculis.
-                            Cras vel sem luctus, mattis quam pulvinar, varius enim.
-                            Curabitur maximus neque eu ipsum ultrices varius.
-                            Integer ullamcorper quis lacus non semper.
-                            Sed accumsan dapibus est ac ultrices.
-                            Nunc non purus nec elit gravida tincidunt.
-                            Phasellus vitae nisl tincidunt, dapibus mi id, ultricies turpis.
-                            Donec mauris dui, vulputate nec luctus vel, ornare ut sapien.
-                            Fusce sollicitudin, erat tempor gravida ultricies, urna nulla bibendum ipsum, in auctor velit magna ac neque.
-                            Donec ac urna et ante consectetur euismod.
-                            Donec dolor mauris, egestas quis ante vitae, dapibus mollis nisi.
-                            Praesent mattis sapien et eros lobortis, vitae elementum metus laoreet.
-                            Sed ex erat, eleifend tincidunt ultrices non, mattis vitae est.
+                            Blackspot Detector System merupakan sebuah sistem untuk mendeteksi daerah rawan kecelakaan yang terdiri dari sebuah perangkat dan website.
+                            Perangkat yang dimaksud adalah BlackSpot Detector (BSD) yang digunakan oleh pengguna untuk diaplikasikan dikendaraan (motor atau mobil) yang berguna untuk mendeteksi lokasi daerah rawan kecelakaan terdekat yang tersebar di suatu daerah dan mengirimkan data statis pengguna berupa kecepatan kendaraan pengguna.
+                            Website ini gunakan sebagai pusat informasi mengenai daerah rawan kecelakaan, pengguna, perangkat, dan statistik pengguna.
+                            Selain itu website ini dapat digunakan untuk menambahkan lokasi daerah rawan kecelakaan oleh pengguna ketika melewati daerah rawan kecelakaan yang belum tersedia di sistem.
+                            Blackspot Detector System diharapkan dapat bermanfaat untuk pengguna jalan dan dapat meningkatkan kewaspadaan pengendara khususnya ketika melewati daerah rawan kecelakaan.
                         </p>
                     </div>
                     <div class="col-md-6">
