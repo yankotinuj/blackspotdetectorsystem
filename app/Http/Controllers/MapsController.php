@@ -25,7 +25,7 @@ class MapsController extends Controller
         {
             $markers['position'] = "$location->lat, $location->lng";
             $markers['animation'] = "DROP";
-            $markers['infowindow_content'] = "$location->alamat";
+            $markers['infowindow_content'] = "$location->alamat | <a href='https://www.google.com/maps/place/{{$location->lat}},{{$location->lng}}' target='_blank'>Lihat di Google Maps</a>";
             $markers['clickable'] = true;
             GMaps::add_marker($markers);
         }
