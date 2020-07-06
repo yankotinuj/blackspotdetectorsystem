@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="card text-white bg-info">
+    <div class="card text-white bg-primary">
         <div class="card-header pt-4">
             <h4>Permintaan Tambah Lokasi</h4>
         </div>
@@ -10,6 +10,8 @@
                 <div class="alert alert-primary" role="alert">
                     Tidak ada permintaan tambah lokasi.
                 </div>
+                <a class="btn btn-danger" href="{{ url()->previous() }}" role="button">Kembali</a>
+
             @else
                 <table class="table table-striped table-hover">
                     <thead>
@@ -29,11 +31,11 @@
                         <td id="locAddress">{{$lokasi->alamat}}</td>
                         <td id="locAddedBy">{{$lokasi->addedby}}</td>
                         <td>
-                            <a class="text-white btn btn-success" role="button" href="{{ route('location-added-by-user-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
+                            <a class="btn btn-success" role="button" href="{{ route('location-added-by-user-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
                             <a class="btn btn-light" role="button" href="https://www.google.com/maps/place/{{$lokasi->lat}},{{$lokasi->lng}}" target="_blank">Lihat</a> &nbsp;
-                            <a class="text-white btn btn-info" role="button" href="{{ route('location-added-by-user-verify',$lokasi->locationid) }}">Verifikasi</a> &nbsp;
-                            <a class="text-white btn btn-danger" role="button" href="{{ route('location-added-by-user-delete',$lokasi->locationid) }}">Delete</a> &nbsp;
-                            <!--<button class="text-white btn btn-danger" onclick="deleteLocation()">Delete</button> &nbsp;-->
+                            <a class="btn btn-info" role="button" href="{{ route('location-added-by-user-verify',$lokasi->locationid) }}">Verifikasi</a> &nbsp;
+                            <a class="btn btn-danger" role="button" href="{{ route('location-added-by-user-delete',$lokasi->locationid) }}">Delete</a> &nbsp;
+                            <!--<button class="btn btn-danger" onclick="deleteLocation()">Delete</button> &nbsp;-->
                         </td>
                     </tr>
                     @endforeach

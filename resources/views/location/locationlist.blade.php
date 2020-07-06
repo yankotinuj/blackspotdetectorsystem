@@ -17,16 +17,16 @@
         <div class="card-body">
             <div class="row px-3">
                 <div class="col-sm-4">
-                    <a class="btn btn-info btn-block text-white" href="{{ route('add-location') }}" role="button">Tambah Lokasi</a>
+                    <a class="btn btn-primary btn-block" href="{{ route('add-location') }}" role="button" data-toggle="modal" data-target="#modalTambahLokasi">Tambah Lokasi</a>
                 </div>
                 @if($users->username == 'admin')
                 <div class="col-sm-4">
-                    <a class="btn btn-info btn-block text-white" href="{{ route('location-added-by-user') }}" role="button">
-                        Permintaan Tambah Lokasi <span class="badge badge-danger text-white">{{$totallocationadded}}</span>
+                    <a class="btn btn-primary btn-block" href="{{ route('location-added-by-user') }}" role="button">
+                        Permintaan Tambah Lokasi <span class="badge badge-danger">{{$totallocationadded}}</span>
                     </a>
                 </div>
                 <div class="col-sm-4">
-                    <a class="btn btn-info btn-block text-white" href="{{ route('location-manage') }}" role="button">
+                    <a class="btn btn-primary btn-block" href="{{ route('location-manage') }}" role="button">
                         Kelola Lokasi
                     </a>
                 </div>
@@ -56,7 +56,7 @@
                 <td>{{$lokasi->lng}}</td>
                 <td>{{$lokasi->alamat}}</td>
                 <td>
-                    <a class="text-white btn btn-success" role="button" href="{{ route('location-by-list-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
+                    <a class="btn btn-success" role="button" href="{{ route('location-by-list-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
                     <a class="btn btn-primary" role="button" href="https://www.google.com/maps/place/{{$lokasi->lat}},{{$lokasi->lng}}" target="_blank">Lihat</a> &nbsp;
                 </td>
             </tr>
@@ -72,7 +72,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Perhatian</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Perhatian</b></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
-                    <a href="{{ route('add-location') }}" role="button" class="btn btn-info btn-block text-white">Lanjutkan</a>
+                    <a href="{{ route('add-location') }}" role="button" class="btn btn-primary btn-block">Lanjutkan</a>
                 </div>
             </div>
         </div>

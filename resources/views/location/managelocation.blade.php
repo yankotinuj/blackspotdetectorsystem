@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="card text-white bg-info">
+    <div class="card text-white bg-primary">
         <div class="card-header pt-4">
             <h4>Kelola Lokasi</h4>
         </div>
@@ -24,10 +24,10 @@
                         <td id="locLat">{{$lokasi->lat}}</td>
                         <td id="locLng">{{$lokasi->lng}}</td>
                         <td>
-                            <a class="text-white btn btn-success" role="button" href="{{ route('location-manage-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
-                            <a class="btn btn-light" role="button" href="https://www.google.com/maps/place/{{$lokasi->lat}},{{$lokasi->lng}}" target="_blank">Lihat</a> &nbsp;
-                            <a class="text-white btn btn-info" role="button" href="{{ route('location-manage-edit',$lokasi->locationid) }}">Edit</a> &nbsp;
-                            <a class="text-white btn btn-danger" role="button" href="{{ route('location-manage-delete',$lokasi->locationid) }}">Delete</a> &nbsp;
+                            <a class="btn btn-success" role="button" href="{{ route('location-manage-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
+                            <a class="btn btn-primary" role="button" href="https://www.google.com/maps/place/{{$lokasi->lat}},{{$lokasi->lng}}" target="_blank">Lihat</a> &nbsp;
+                            <a class="btn btn-info text-white" role="button" href="{{ route('location-manage-edit',$lokasi->locationid) }}">Edit</a> &nbsp;
+                            <a class="btn btn-danger" role="button" href="{{ route('location-manage-delete',$lokasi->locationid) }}">Delete</a> &nbsp;
                         </td>
                     </tr>
                     @endforeach

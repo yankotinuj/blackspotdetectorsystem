@@ -74,7 +74,7 @@
                     <div class="col-sm-4">
                         <div class="row">
                             <button type="submit" onclick="onSubmitClicked();" id="submitForm" class="btn btn-success">Simpan</button> &nbsp;
-                            <a class="btn btn-danger text-white" href="{{ route('location-added-by-user-detail',$locations->locationid) }}" role="button">Kembali</a>
+                            <a class="btn btn-danger" href="{{ url()->previous() }}" role="button">Kembali</a>
                         </div>
                     </div>
                     <div class="col-sm-4">

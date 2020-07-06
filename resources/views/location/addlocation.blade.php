@@ -2,13 +2,10 @@
 
 @section('content')
 <div class="container">
-    <div class="card text-white bg-info">
+    <div class="card text-white bg-primary">
         <div class="card-header pt-4">
             <h4>Tambah Lokasi</h4>
-            <h5>{{$lastlocationid}}</h5>
-            <h5>{{$extractedNumLocationId}}</h5>
-            <h5>{{$newNumLocationId}}</h5>
-            <h5>{{$stringNewNumLocationId}}</5>
+            <h5>ID Lokasi : DRK{{$stringNewNumLocationId}}</5>
         </div>
         <div class="card-body bg-light text-body">  
             <form id="tambahlokasi" method="post" action="javascript:void(0)">
@@ -17,16 +14,8 @@
                     <div class="row">
                         <label for="latitude" class="col-4 col-form-label">Latitude Lokasi</label>
                             <div class="col-8">
-                                <input class="form-control" type="number" step="any" placeholder="Latitude Lokasi" id="lat" required>
+                                <input class="form-control" type="number" step="any" placeholder="Lihat LAT pada Perangkat" id="lat" required>
                             </div>
-                    </div>
-                    <div class="row pt-2">
-                        <div class="col-4">
-
-                        </div>
-                        <div class="col-2">
-                            <button type="button" onclick="#" id="getLat" class="btn btn-info text-white">Get Latitude</button>
-                        </div>
                     </div>
                 </div>
 
@@ -34,16 +23,8 @@
                     <div class="row">
                         <label for="longitude" class="col-4 col-form-label">Longitude Lokasi</label>
                             <div class="col-8">
-                                <input class="form-control" type="number" step="any" placeholder="Longitude Lokasi" id="lng" required>
+                                <input class="form-control" type="number" step="any" placeholder="Lihat LNG pada Perangkat" id="lng" required>
                             </div>
-                    </div>
-                    <div class="row pt-2">
-                        <div class="col-4">
-
-                        </div>
-                        <div class="col-2">
-                            <button type="button" onclick="#" id="getLng" class="btn btn-info text-white">Get Longitude</button>
-                        </div>
                     </div>
                 </div>
 
@@ -62,7 +43,7 @@
                 </div>
                 
                 <button type="submit" onclick="onSubmitClicked();" id="submitForm" class="btn btn-success">Simpan</button> &nbsp;
-                <a class="btn btn-info text-white" href="{{ route('location-by-list') }}" role="button">Kembali</a> &nbsp;
+                <a class="btn btn-primary" href="{{ url()->previous() }}" role="button">Kembali</a> &nbsp;
                 <button type="reset" class="btn btn-danger">Reset</button>
 
                 <script>
