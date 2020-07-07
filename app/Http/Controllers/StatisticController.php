@@ -9,23 +9,29 @@ use App\Location;
 use App\Statistic;
 use App\Charts\StatisticsChart;
 use Auth;
+use DB;
 
 class StatisticController extends Controller
 {
     public function index()
     {
-        $users = User::where('id', Auth::user()->id)->first();
-        $userStatistics = Statistic::where('deviceid', $users->deviceid)->get();
-        $countUserStatistics = Statistic::where('deviceid', $users->deviceid)->count();
+        $userStatistics = DB::table('statistics')->select('statistics.*','locations.*')->join('locations','statistics.locationid','=','locations.locationid')
+        ->where('statistics.deviceid','=',Auth::user()->deviceid)->orderBy('statistics.created_at','desc')->get();
+        
+        $countUserStatistics = Statistic::where('deviceid', Auth::user()->deviceid)->count();
 
-        $avgSpeed1500m = Statistic::where('deviceid', $users->deviceid)->avg('spd_1500m');
-        $avgSpeed1000m = Statistic::where('deviceid', $users->deviceid)->avg('spd_1000m');
-        $avgSpeed500m = Statistic::where('deviceid', $users->deviceid)->avg('spd_500m');
-        $avgSpeed10m = Statistic::where('deviceid', $users->deviceid)->avg('spd_10m');
+        $avgSpeed1500m = Statistic::where('deviceid', Auth::user()->deviceid)->avg('spd_1500m');
+        $avgSpeed1000m = Statistic::where('deviceid', Auth::user()->deviceid)->avg('spd_1000m');
+        $avgSpeed500m = Statistic::where('deviceid', Auth::user()->deviceid)->avg('spd_500m');
+        $avgSpeed10m = Statistic::where('deviceid', Auth::user()->deviceid)->avg('spd_10m');
 
         $statisticsChart = new StatisticsChart;
+        $statisticsChart->title('Rata-rata Kecepatan Berkendara Anda');
         $statisticsChart->labels(['Jarak 1500 M', 'Jarak 1000 M', 'Jarak 500 M', 'Jarak 10 M']);
-        $statisticsChart->dataset('Kecepatan dalam KM/J', 'bar', [$avgSpeed1500m, $avgSpeed1000m, $avgSpeed500m, $avgSpeed10m]);
-        return view ('statistic.statistics', ['users' => $users, 'statisticsChart' => $statisticsChart]);
+        $statisticsChart->dataset('Kecepatan dalam KM/J', 'bar', [$avgSpeed1500m, $avgSpeed1000m, $avgSpeed500m, $avgSpeed10m])
+                        ->color("rgb(52, 144, 220)")
+                        ->backgroundcolor("rgb(52, 144, 220)");
+
+        return view ('statistic.statistics', ['statisticsChart' => $statisticsChart, 'userStatistics' => $userStatistics, 'countUserStatistics' => $countUserStatistics]);
     }
 }
