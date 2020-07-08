@@ -85,17 +85,31 @@
                 </div>
             @else
                 @foreach ($userStatistics as $statisticHistory)
+
+                <style>
+                    .card-header .fa {
+                    transition: .3s transform ease-in-out;
+                    }
+                    .card-header .collapsed .fa {
+                    transform: rotate(90deg);
+                    }
+                </style>
+
                     <div class="row">
                         <div class="col-md pb-3">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-header bg-white">
                                     <h5 class="card-title"><b>
                                         <a data-toggle="collapse" href="#collapse-statisticHistory{{ $statisticHistory->locationid }}" aria-expanded="true" aria-controls="collapse-statisticHistory{{ $statisticHistory->locationid }}" class="collapsed d-block">
-                                            {{ $statisticHistory->locationid }}
+                                        <i class="fa fa-chevron-down pull-right" aria-hidden="true"></i>
+                                        {{ $statisticHistory->locationid }}
                                         </a>
                                     </b></h5>
                                     <h6 class="card-subtitle"><b>Waktu : {{ $statisticHistory->created_at }}</b></h6>
-                                    <div id="collapse-statisticHistory{{ $statisticHistory->locationid }}" class="collapse" aria-labelledby="heading-example">
+                                </div>
+                                <!-- Collapse Untuk Data Statistik -->
+                                <div id="collapse-statisticHistory{{ $statisticHistory->locationid }}" class="collapse" aria-labelledby="heading-example">
+                                    <div class="card-body">
                                         <p class="card-text mt-2">{{ $statisticHistory->alamat }}.</p>
                                         <h6 class="card-subtitle mb-2 text-center"><b>Kecepatan Anda</b></h6>
 
@@ -140,51 +154,48 @@
                                         </div>
                                         <!--Akhir Bagian Card Untuk Rata-rata kecepatan-->
                                         
-                                        <a class="btn btn-success" role="button" data-toggle="collapse" href="#collapse-showChart{{ $statisticHistory->locationid }}" aria-expanded="true" aria-controls="collapse-showChart{{ $statisticHistory->locationid }}">Tampilkan Grafik</a>
-                                    </div> 
-                                </div>
-                                <div id="collapse-showChart{{ $statisticHistory->locationid }}" class="collapse" aria-labelledby="heading-example">
-                                    <div class="card-footer">
-                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-                                        
-                                        <canvas id="showChart{{ $statisticHistory->locationid }}" height="250"></canvas>
+                                        <a class="btn btn-success" role="button" data-toggle="collapse" href="#collapse-showChart{{ $statisticHistory->locationid }}" aria-expanded="true" aria-controls="collapse-showChart{{ $statisticHistory->locationid }}">Tampilkan Grafik</a>                            
+                                    </div>
+                                    <div id="collapse-showChart{{ $statisticHistory->locationid }}" class="collapse" aria-labelledby="heading-example">
+                                        <div class="card-footer">
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+                                            
+                                            <canvas id="showChart{{ $statisticHistory->locationid }}" height="250"></canvas>
 
-                                        <!--Untuk Menampilkan Grafik-->
-                                        <script>
-                                            var ctx = document.getElementById('showChart{{ $statisticHistory->locationid }}').getContext('2d');
-                                            var chart = new Chart(ctx, {
-                                                type: 'horizontalBar',
-                                                data: {
-                                                    labels: ['Jarak 1500 M', 'Jarak 1000 M', 'Jarak 500 M', 'Jarak 10 M'],
-                                                    datasets: [{
-                                                        label: 'Kecepatan dalam KM/J',
-                                                        backgroundColor: 'rgb(56, 193, 114)',
-                                                        borderColor: 'rgb(56, 193, 114)',
-                                                        data: [{{ $statisticHistory->spd_1500m }}, {{ $statisticHistory->spd_1000m }}, {{ $statisticHistory->spd_500m }}, {{ $statisticHistory->spd_10m }}]
-                                                    }]
-                                                },
-                                                options: {
-                                                    title: {
-                                                    display: true,
-                                                    text: 'Kecepatan Berkendara Anda Saat Melewati Lokasi ID : {{ $statisticHistory->locationid }}'
-                                                    },
-                                                    responsive: true,
-                                                    scales: {
-                                                        xAxes: [{
-                                                            ticks: {
-                                                            maxRotation: 90,
-                                                            minRotation: 80
-                                                            }
-                                                        }],
-                                                        yAxes: [{
-                                                            ticks: {
-                                                            beginAtZero: true
-                                                            }
+                                            <!--Untuk Menampilkan Grafik-->
+                                            <script>
+                                                var ctx = document.getElementById('showChart{{ $statisticHistory->locationid }}').getContext('2d');
+                                                var chart = new Chart(ctx, {
+                                                    type: 'horizontalBar',
+                                                    data: {
+                                                        labels: ['Jarak 1500 M', 'Jarak 1000 M', 'Jarak 500 M', 'Jarak 10 M'],
+                                                        datasets: [{
+                                                            label: 'Kecepatan dalam KM/J',
+                                                            backgroundColor: 'rgba(56, 193, 114, 0.5)',
+                                                            borderColor: 'rgba(56, 193, 114, 0.5)',
+                                                            borderWidth: 2,
+                                                            data: [{{ $statisticHistory->spd_1500m }}, {{ $statisticHistory->spd_1000m }}, {{ $statisticHistory->spd_500m }}, {{ $statisticHistory->spd_10m }}]
                                                         }]
+                                                    },
+                                                    options: {
+                                                        title: {
+                                                        display: true,
+                                                        text: 'Kecepatan Berkendara Anda Saat Melewati Lokasi ID : {{ $statisticHistory->locationid }}'
+                                                        },
+                                                        responsive: true,
+                                                        scales: {
+                                                            xAxes: [{
+                                                                ticks: {
+                                                                beginAtZero: true,
+                                                                maxRotation: 90,
+                                                                minRotation: 80
+                                                                }
+                                                            }]
+                                                        }
                                                     }
-                                                }
-                                            });
-                                        </script>
+                                                });
+                                            </script>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
