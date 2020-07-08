@@ -19,6 +19,34 @@ class UserController extends Controller
         return view('user.userprofile', ['users' => $users]);
     }
 
+    public function indexAdmin()
+    {
+        if (Auth::user()->username == 'admin')
+        {
+            $users = User::where('username', Auth::user()->username)->first();
+            return view('user.userprofile', ['users' => $users]);
+        }
+        else
+        {
+            alert()->error('Anda tidak memiliki hak akses!', 'Aksi Dilarang!')->persistent("Close");
+            return back();
+        }
+    }
+
+    public function viewUser($username)
+    {
+        if (Auth::user()->username == 'admin')
+        {
+            $users = User::where('username', $username)->first();
+            return view('user.userprofile', ['users' => $users]);
+        }
+        else
+        {
+            alert()->error('Anda tidak memiliki hak akses!', 'Aksi Dilarang!')->persistent("Close");
+            return back();
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -19,6 +19,20 @@ class DeviceController extends Controller
         return view('device.device', ['devices' => $devices]);
     }
 
+    public function viewDevice($deviceid)
+    {
+        if (Auth::user()->username == 'admin')
+        {
+            $devices = Device::where('deviceid', $deviceid)->first();
+            return view('device.device', ['devices' => $devices]);
+        }
+        else
+        {
+            alert()->error('Anda tidak memiliki hak akses!', 'Aksi Dilarang!')->persistent("Close");
+            return back();
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
