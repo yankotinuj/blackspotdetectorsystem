@@ -29,8 +29,8 @@ class StatisticController extends Controller
         $statisticsChart->title('Rata-rata Kecepatan Berkendara Anda');
         $statisticsChart->labels(['Jarak 1500 M', 'Jarak 1000 M', 'Jarak 500 M', 'Jarak 10 M']);
         $statisticsChart->dataset('Kecepatan dalam KM/J', 'bar', [$avgSpeed1500m, $avgSpeed1000m, $avgSpeed500m, $avgSpeed10m])
-                        ->color("rgb(52, 144, 220)")
-                        ->backgroundcolor("rgb(52, 144, 220)");
+                        ->color("rgba(52, 144, 220, 0.5)")
+                        ->backgroundcolor("rgba(52, 144, 220, 0.5)");
 
         return view ('statistic.statistics', ['statisticsChart' => $statisticsChart, 'userStatistics' => $userStatistics, 'countUserStatistics' => $countUserStatistics]);
     }
