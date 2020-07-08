@@ -27,11 +27,17 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+            @else
+                @if(Auth::user()->username == 'admin')
+                    <a class="navbar-brand" href="{{ route('home-admin') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
                 @else
-                <a class="navbar-brand" href="{{ route('home') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                @endguest
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+                @endif
+            @endguest
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -56,34 +62,71 @@
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                         @else
-                            <li class="nav-item px-1">
-                                <a class="nav-link" href="{{ route('location-by-list') }}">Lokasi Daerah Rawan Kecelakaan</a>
-                            </li>
-                            <li class="nav-item px-1">
-                                <a class="nav-link" href="{{ route('device') }}">Perangkat Saya</a>
-                            </li>
-                            <li class="nav-item px-1">
-                                <a class="nav-link" href="{{ route('statistics') }}">Statisktik</a>
-                            </li>
-                            <li class="nav-item px-1">
-                                <a class="nav-link" href="{{ route('about') }}">About</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                            @if(Auth::user()->username == 'admin')
+                                <li class="nav-item px-1">
+                                    <a class="nav-link" href="{{ route('location-by-list-admin') }}">Lokasi Daerah Rawan Kecelakaan</a>
+                                </li>
+                                <li class="nav-item px-1">
+                                    <a class="nav-link" href="#">Belum Tahu Ini Buat Apa</a>
+                                </li>
+                                <li class="nav-item px-1">
+                                    <a class="nav-link" href="{{ route('statistics-admin') }}">Statistik</a>
+                                </li>
+                                <li class="nav-item px-1">
+                                    <a class="nav-link" href="{{ route('about') }}">About</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('userprofile') }}">
-                                        View Profile
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('userprofile-admin') }}">
+                                            View Profile
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @else
+                                <li class="nav-item px-1">
+                                    <a class="nav-link" href="{{ route('location-by-list') }}">Lokasi Daerah Rawan Kecelakaan</a>
+                                </li>
+                                <li class="nav-item px-1">
+                                    <a class="nav-link" href="{{ route('device') }}">Perangkat Saya</a>
+                                </li>
+                                <li class="nav-item px-1">
+                                    <a class="nav-link" href="{{ route('statistics') }}">Statistik</a>
+                                </li>
+                                <li class="nav-item px-1">
+                                    <a class="nav-link" href="{{ route('about') }}">About</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                </div>
-                            </li>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('userprofile') }}">
+                                            View Profile
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endif
                         @endguest
                     </ul>
                 </div>
@@ -103,7 +146,11 @@
                         @guest
                         <a class="btn btn-primary btn-lg" href="{{ route('login') }}" role="button">Login</a>
                         @else
-                        <a class="btn btn-primary btn-lg" href="{{ route('home') }}" role="button">Login</a>
+                            @if(Auth::user()->username == 'admin')
+                                <a class="btn btn-primary btn-lg" href="{{ route('home-admin') }}" role="button">Login</a>
+                            @else
+                                <a class="btn btn-primary btn-lg" href="{{ route('home') }}" role="button">Login</a>
+                            @endif
                         @endguest
                     </div>
                     <div class="col-md-6">
