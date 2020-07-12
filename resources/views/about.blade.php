@@ -147,8 +147,8 @@
                             Blackspot Detector System diharapkan dapat bermanfaat untuk pengguna jalan dan dapat meningkatkan kewaspadaan pengendara khususnya ketika melewati daerah rawan kecelakaan.
                         </p>
                     </div>
-                    <div class="col-md-6 pt-5">
-                    <img src="{{ asset('img/About.png') }}" class="img-fluid" alt="Blackspot Detector System">
+                    <div class="col-md-6">
+                    <img src="{{ asset('img/About-Square.png') }}" class="img-fluid" alt="Blackspot Detector System">
                     </div>
                 </div>
             </div>
