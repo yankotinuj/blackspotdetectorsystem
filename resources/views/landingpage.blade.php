@@ -153,8 +153,8 @@
                             @endif
                         @endguest
                     </div>
-                    <div class="col-md-6">
-                    <img src="{{ asset('img/landingpageimage.jpg') }}" class="img-fluid" alt="Blackspot Detector System">
+                    <div class="col-md-6 pt-5">
+                        <img src="{{ asset('img/Landing-Page.png') }}" class="img-fluid" alt="Blackspot Detector System">
                     </div>
                 </div>
             </div>
