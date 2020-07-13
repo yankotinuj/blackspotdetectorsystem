@@ -106,7 +106,7 @@
                                     <a class="nav-link" href="{{ route('device') }}">Perangkat Saya</a>
                                 </li>
                                 <li class="nav-item px-1">
-                                    <a class="nav-link" href="{{ route('statistics') }}">Statisktik</a>
+                                    <a class="nav-link" href="{{ route('statistics') }}">Statistik</a>
                                 </li>
                                 <li class="nav-item px-1">
                                     <a class="nav-link" href="{{ route('about') }}">About</a>
