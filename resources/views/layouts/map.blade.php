@@ -72,9 +72,6 @@
                                     <a class="nav-link" href="{{ route('location-by-list-admin') }}">Lokasi Daerah Rawan Kecelakaan</a>
                                 </li>
                                 <li class="nav-item px-1">
-                                    <a class="nav-link" href="#">Belum Tahu Ini Buat Apa</a>
-                                </li>
-                                <li class="nav-item px-1">
                                     <a class="nav-link" href="{{ route('statistics-admin') }}">Statistik</a>
                                 </li>
                                 <li class="nav-item px-1">
