@@ -31,7 +31,8 @@ class LocationController extends Controller
         if (Auth::user()->username == 'admin')
         {
             $locations = Location::where('verified', 1)->get();
-            return view('location.managelocation',['locations' => $locations]);
+            $totallocation = Location::where('verified', 1)->count();
+            return view('location.managelocation',['locations' => $locations, 'totallocation' => $totallocation]);
         }
         else
         {
@@ -40,11 +41,6 @@ class LocationController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function addLocation()
     {
         $users = User::where('id', Auth::user()->id)->first();
@@ -56,12 +52,6 @@ class LocationController extends Controller
         return view('location.addlocation',['users' => $users, 'lastlocationid' => $lastlocationid, 'extractedNumLocationId' => $extractedNumLocationId, 'newNumLocationId' => $newNumLocationId, 'stringNewNumLocationId' => $stringNewNumLocationId]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $Lokasi = new Location;
@@ -85,12 +75,6 @@ class LocationController extends Controller
         return Response::json(['action' => 'save_tambahlokasi', $request], 201); // Status code here
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
     public function addedlocation()
     {
         $verified = 0;
@@ -100,9 +84,44 @@ class LocationController extends Controller
         return view('location.locationadded',['locations' => $locations, 'users' => $users, 'totallocationadded' => $totallocationadded]);
     }
 
+    public function editLocation($locationid)
+    {
+        if (Auth::user()->username == 'admin')
+        {
+            $location = Location::where('locationid', $locationid)->first();
+            return view('location.editlocation',['location' => $location]);
+        }
+        else
+        {
+            alert()->error('Anda tidak memiliki hak akses!', 'Aksi Dilarang!')->persistent("Close");
+            return back();
+        }
+    }
+
+    public function updateLocation(Request $request, $locationid)
+    {
+        if (Auth::user()->username == 'admin')
+        {
+            $location = Location::where('locationid', $locationid)
+            ->update([
+                'lat' => $request->lat,
+                'lng' => $request->lng,
+                'alamat' => $request->alamat
+            ]);
+            sleep(2);
+            return redirect('location-manage');
+        }
+        else
+        {
+            alert()->error('Anda tidak memiliki hak akses!', 'Aksi Dilarang!')->persistent("Close");
+            return back();
+        }
+    }
+
     public function delete($locationid)
     {
-        if (Auth::user()->username == 'admin'){
+        if (Auth::user()->username == 'admin')
+        {
             DB::table('locations')->where('locationid', $locationid)->delete();
             DB::table('detail_locations')->where('locationid', $locationid)->delete();
             sleep(2);
@@ -120,12 +139,6 @@ class LocationController extends Controller
         if (Auth::user()->username == 'admin'){
             $addedLocation = Location::where('verified', 0)->where('locationid', $locationid)
             ->update(['verified' => 1]);
-            
-            /*DB::table('locations')->where('locationid', $locationid)->update(
-                [
-                    'verified' => 1
-                ]
-            );*/
             sleep(2);
             return back();
         }
@@ -134,39 +147,5 @@ class LocationController extends Controller
             alert()->error('Anda tidak memiliki hak akses!', 'Aksi Dilarang!')->persistent("Close");;
             return back();
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Location $location)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Location $location)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Location $location)
-    {
-        //
     }
 }
