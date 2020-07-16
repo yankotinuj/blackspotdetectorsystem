@@ -87,4 +87,8 @@ Route::get('/dashboard/admin/location/added-by-user/{locationid}/verify', 'Locat
 
 Route::get('/dashboard/admin/statistics', 'StatisticController@indexAdmin')->name('statistics-admin');
 
+Route::get('/dashboard/admin/statistics/{deviceid}', 'StatisticController@indexAdminView')->name('statistics-admin-view');
+
+Route::get('/dashboard/admin/statistics/{deviceid}/{locationid}', 'StatisticController@indexAdminViewDetail')->name('statistics-admin-view-detail');
+
 /* ======================================== */
