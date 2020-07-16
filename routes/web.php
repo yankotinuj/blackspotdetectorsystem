@@ -61,7 +61,7 @@ Route::get('/dashboard/admin/location/add-location', 'LocationController@addLoca
 
 Route::get('/dashboard/admin/location/manage', 'LocationController@indexManageLocation')->name('location-manage');
 
-Route::get('/dashboard/admin/location/manage/{locationid}/edit', 'LocationController@edit')->name('location-manage-edit');
+Route::get('/dashboard/admin/location/manage/{locationid}/edit', 'LocationController@editLocation')->name('location-manage-edit');
 
 Route::get('/dashboard/admin/location/manage/{locationid}/detail', 'DetailLocationController@index')->name('location-manage-detail');
 
