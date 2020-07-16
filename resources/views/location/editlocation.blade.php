@@ -60,6 +60,10 @@
                             console.log(response);
                             $("#submitForm").html('Simpan');
                             Command: swal("Sukses Menyimpan", "Edit Lokasi Berhasil!", "success");
+                            setTimeout(function()
+                            {
+                                window.location.replace("{{ url()->previous() }}"); //Pindah ke halaman sebelumnya
+                            },2000);
                         })
                         .catch(function (error)
                         {

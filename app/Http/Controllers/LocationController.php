@@ -106,8 +106,7 @@ class LocationController extends Controller
                 'lng' => $request->lng,
                 'alamat' => $request->alamat
             ]);
-            sleep(2);
-            return redirect('location-manage');
+            return back();
     }
 
     public function delete($locationid)
