@@ -100,8 +100,6 @@ class LocationController extends Controller
 
     public function updateLocation(Request $request, $locationid)
     {
-        if (Auth::user()->username == 'admin')
-        {
             $location = Location::where('locationid', $locationid)
             ->update([
                 'lat' => $request->lat,
@@ -110,12 +108,6 @@ class LocationController extends Controller
             ]);
             sleep(2);
             return redirect('location-manage');
-        }
-        else
-        {
-            alert()->error('Anda tidak memiliki hak akses!', 'Aksi Dilarang!')->persistent("Close");
-            return back();
-        }
     }
 
     public function delete($locationid)
