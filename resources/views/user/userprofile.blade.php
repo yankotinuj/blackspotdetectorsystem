@@ -46,7 +46,7 @@
             <div class="row px-3 pt-3">
                 <div class="col-sm-4">
                     <div class="row">
-                    <a class="btn btn-primary" href="{{ url()->previous() }}" role="button">Kembali</a>
+                    <a class="btn btn-danger" href="{{ url()->previous() }}" role="button">Kembali</a>
                     </div>
                 </div>
                 <div class="col-sm-4">

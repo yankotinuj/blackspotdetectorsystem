@@ -2,20 +2,20 @@
 
 @section('content')
 <div class="container">
-    <div class="card text-white bg-primary">
-        <div class="card-header pt-4">
+    <div class="card">
+        <div class="card-header bg-white pt-4">
             <h4>Tambah Lokasi</h4>
-            <h5>ID Lokasi : DRK{{$stringNewNumLocationId}}</5>
+            <h5>ID Lokasi : <b>DRK{{$stringNewNumLocationId}}</b></5>
         </div>
-        <div class="card-body bg-light text-body">  
+        <div class="card-body">  
             <form id="tambahlokasi" method="post" action="javascript:void(0)">
 
                 <div class="form-group">
                     <div class="row">
                         <label for="latitude" class="col-4 col-form-label">Latitude Lokasi</label>
-                            <div class="col-8">
-                                <input class="form-control" type="number" step="any" placeholder="Lihat LAT pada Perangkat" id="lat" required>
-                            </div>
+                        <div class="col-8">
+                            <input class="form-control" type="number" step="any" placeholder="Lihat LAT pada Perangkat" id="lat" required>
+                        </div>
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@
                             setTimeout(function()
                             {
                                 window.location.replace("{{ route('location-by-list') }}"); //Pindah ke halaman sebelumnya
-                            },7000); // 7000 -> ms = 7 Detik
+                            },3000); // 4000 -> ms = 4 Detik
                         })
                         .catch(function (error)
                         {

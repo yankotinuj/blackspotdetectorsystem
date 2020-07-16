@@ -13,6 +13,9 @@
     </ul>
 
     <div class="card my-3">
+        <div class="card-header bg-white pt-4">
+            <h4>Peta Lokasi</h4>
+        </div>
         <div class="card-body">
             {!! $map['html'] !!}
         </div>

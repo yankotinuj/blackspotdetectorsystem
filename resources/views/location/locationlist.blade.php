@@ -16,56 +16,70 @@
     <div class="card my-3">
         <div class="card-body">
             <div class="row px-3">
-                <div class="col-sm-4">
-                    <a class="btn btn-primary btn-block" href="{{ route('add-location') }}" role="button" data-toggle="modal" data-target="#modalTambahLokasi">Tambah Lokasi</a>
+                @if(Auth::user()->username == 'admin')
+                <div class="col-sm-4 pb-2 pt-2">
+                    <a class="btn btn-primary btn-block" href="{{ route('add-location') }}" role="button">Tambah Lokasi</a>
                 </div>
-                @if($users->username == 'admin')
-                <div class="col-sm-4">
+                <div class="col-sm-4 pb-2 pt-2">
                     <a class="btn btn-primary btn-block" href="{{ route('location-added-by-user') }}" role="button">
                         Permintaan Tambah Lokasi <span class="badge badge-danger">{{$totallocationadded}}</span>
                     </a>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 pb-2 pt-2">
                     <a class="btn btn-primary btn-block" href="{{ route('location-manage') }}" role="button">
                         Kelola Lokasi
                     </a>
+                </div>
+                @else
+                <div class="col-sm-4 pb-2 pt-2">
+                    <a class="btn btn-primary btn-block" href="{{ route('add-location') }}" role="button" data-toggle="modal" data-target="#modalTambahLokasi">Tambah Lokasi</a>
                 </div>
                 @endif
             </div>
         </div>
     </div>
     
-
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th scope="col">No</th>
-                <th scope="col">ID Lokasi</th>
-                <th scope="col">Latitude</th>
-                <th scope="col">Longitude</th>
-                <th scope="col">Alamat</th>
-                <th scope="col">Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($locations as $lokasi)
-            <tr>
-                <td>{{$loop->iteration}}</td>
-                <td>{{$lokasi->locationid}}</td>
-                <td>{{$lokasi->lat}}</td>
-                <td>{{$lokasi->lng}}</td>
-                <td>{{$lokasi->alamat}}</td>
-                <td>
-                    <a class="btn btn-success" role="button" href="{{ route('location-by-list-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
-                    <a class="btn btn-primary" role="button" href="https://www.google.com/maps/place/{{$lokasi->lat}},{{$lokasi->lng}}" target="_blank">Lihat</a> &nbsp;
-                </td>
-            </tr>
-            @endforeach
-            @if(!empty($errorMsg))
-                <div class="alert alert-danger"> {{ $errorMsg }}</div>
-            @endif
-        </tbody>
-    </table>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Daftar Lokasi</h4>
+            <div class="table-responsive">
+                <table class="card-table table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">ID Lokasi</th>
+                            <th scope="col">Latitude</th>
+                            <th scope="col">Longitude</th>
+                            <th style="width: 50%" scope="col">Alamat</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($locations as $lokasi)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$lokasi->locationid}}</td>
+                            <td>{{$lokasi->lat}}</td>
+                            <td>{{$lokasi->lng}}</td>
+                            <td>{{$lokasi->alamat}}</td>
+                            <td>
+                            @if(Auth::user()->username == 'admin')
+                                <a class="btn btn-success" role="button" href="{{ route('location-manage-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
+                            @else
+                                <a class="btn btn-success" role="button" href="{{ route('location-by-list-detail',$lokasi->locationid) }}">Detail</a> &nbsp;
+                            @endif 
+                                <a class="btn btn-primary" role="button" href="https://www.google.com/maps/place/{{$lokasi->lat}},{{$lokasi->lng}}" target="_blank">Lihat</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @if(!empty($errorMsg))
+                            <div class="alert alert-danger"> {{ $errorMsg }}</div>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="modalTambahLokasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

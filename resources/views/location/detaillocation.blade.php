@@ -75,14 +75,14 @@
                 <div class="col-sm-4">
                     <div class="row">
                     @if($locations->verified == 0)
-                        <a class="btn btn-danger" href="{{ url()->previous() }}" role="button">Kembali</a> &nbsp;
-                        <a class="btn btn-primary" href="{{ route('location-added-by-user-detail-add',$locations->locationid) }}" role="button">Tambahkan Data Kecelakaan</a>
-                    @elseif($users->username == 'admin')
-                        <a class="btn btn-danger" href="{{ url()->previous() }}" role="button">Kembali</a> &nbsp;
-                        <a class="btn btn-primary" href="{{ route('location-manage-detail-edit',$locations->locationid) }}" role="button">Edit Data Kecelakaan</a>
+                        <a class="btn btn-primary" href="{{ route('location-added-by-user-detail-add',$locations->locationid) }}" role="button">Tambahkan Data Kecelakaan</a> &nbsp;
+                        <a class="btn btn-danger" href="{{ route('location-added-by-user') }}" role="button">Kembali</a>
+                    @elseif(Auth::user()->username == 'admin')
+                        <a class="btn btn-primary" href="{{ route('location-manage-detail-edit',$locations->locationid) }}" role="button">Edit Data Kecelakaan</a> &nbsp;
+                        <a class="btn btn-danger" href="{{ route('location-manage') }}" role="button">Kembali</a>
                     @else
-                        <a class="btn btn-danger" href="{{ url()->previous() }}" role="button">Kembali</a> &nbsp;
-                        <a class="btn btn-primary" href="https://www.google.com/maps/place/{{$locations->lat}},{{$locations->lng}}" target="_blank" role="button">Lihat di Google Maps</a>
+                        <a class="btn btn-primary" href="https://www.google.com/maps/place/{{$locations->lat}},{{$locations->lng}}" target="_blank" role="button">Lihat di Google Maps</a> &nbsp;
+                        <a class="btn btn-danger" href="{{ url()->previous() }}" role="button">Kembali</a>
                     @endif
                     </div>
                 </div>
