@@ -134,7 +134,7 @@
                                 <div class="card-body">
                                     <h6 class="card-title text-center"><b>Lokasi Terverifikasi</b></h6>
                                     <h1 class="card-text text-center display-5"><b>{{ $totallocationverified }}</b></h2>
-                                    <a class="btn btn-success" role="button" href="{{ route('location-by-list') }}" class="card-link">Lihat Lokasi</a>
+                                    <a class="btn btn-success" role="button" href="{{ route('location-by-list-admin') }}" class="card-link">Lihat Lokasi</a>
                                 </div>
                             </div>
                         </div>
