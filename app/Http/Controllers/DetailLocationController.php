@@ -61,60 +61,6 @@ class DetailLocationController extends Controller
             'lukaringan' => $request->lukaringan,
             'koefisien' => $request->koefisien
             ]);
-            return $request;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\DetailLocation  $detailLocation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(DetailLocation $detailLocation)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\DetailLocation  $detailLocation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(DetailLocation $detailLocation)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\DetailLocation  $detailLocation
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(DetailLocation $detailLocation)
-    {
-        //
+            return back();
     }
 }
