@@ -105,6 +105,7 @@ class LocationController extends Controller
         if (Auth::user()->username == 'admin'){
             DB::table('locations')->where('locationid', $locationid)->delete();
             DB::table('detail_locations')->where('locationid', $locationid)->delete();
+            sleep(2);
             return back();
         }
         else
@@ -125,6 +126,7 @@ class LocationController extends Controller
                     'verified' => 1
                 ]
             );*/
+            sleep(2);
             return back();
         }
         else
