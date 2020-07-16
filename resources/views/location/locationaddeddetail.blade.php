@@ -108,8 +108,8 @@
                     Command: swal("Sukses Menyimpan", "Detail Lokasi Berhasil Ditambahkan.", "success");
                     setTimeout(function()
                     {
-                        window.location.replace("{{ route('location-added-by-user-detail',$locations->locationid) }}"); //Pindah ke halaman sebelumnya
-                    },3000); // 3000 -> ms = 3 Detik
+                        window.location.replace("{{ url()->previous() }}"); //Pindah ke halaman sebelumnya
+                    },2000);
                 })
                 .catch(function (error)
                 {
