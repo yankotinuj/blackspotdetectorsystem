@@ -89,6 +89,6 @@ Route::get('/dashboard/admin/statistics', 'StatisticController@indexAdmin')->nam
 
 Route::get('/dashboard/admin/statistics/{deviceid}', 'StatisticController@indexAdminView')->name('statistics-admin-view');
 
-Route::get('/dashboard/admin/statistics/{deviceid}/{locationid}', 'StatisticController@indexAdminViewDetail')->name('statistics-admin-view-detail');
+Route::get('/dashboard/admin/statistics/{deviceid}/{id}/{locationid}', 'StatisticController@indexAdminViewDetail')->name('statistics-admin-view-detail');
 
 /* ======================================== */

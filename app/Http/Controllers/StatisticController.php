@@ -17,9 +17,9 @@ class StatisticController extends Controller
     {
         if (Auth::check())
         {
-            $userStatistics = DB::table('statistics')->select('statistics.*','locations.*')->join('locations','statistics.locationid','=','locations.locationid')
+            $userStatistics = DB::table('statistics')->select('statistics.*','locations.alamat')->join('locations','statistics.locationid','=','locations.locationid')
             ->where('statistics.deviceid','=',Auth::user()->deviceid)->orderBy('statistics.created_at','desc')->get();
-            
+
             $countUserStatistics = Statistic::where('deviceid', Auth::user()->deviceid)->count();
 
             $avgSpeed1500m = Statistic::where('deviceid', Auth::user()->deviceid)->avg('spd_1500m');
@@ -100,24 +100,22 @@ class StatisticController extends Controller
             return redirect('login');
         }
     }
-    public function indexAdminViewDetail($deviceid, $locationid)
+    public function indexAdminViewDetail($deviceid, $id, $locationid)
     {
         if (Auth::check())
         {
             if (Auth::user()->username == 'admin')
             {
                 $user = User::where('deviceid', $deviceid)->first();
-                $userStatistics = DB::table('statistics')->select('statistics.*','locations.alamat')->join('locations','statistics.locationid','=','locations.locationid')
-                ->where('statistics.deviceid','=',$user->deviceid)->orderBy('statistics.created_at','desc')->get();
                 $selectedUserStatistics = DB::table('statistics')->select('statistics.*','locations.alamat')->join('locations','statistics.locationid','=','locations.locationid')
-                ->where('statistics.locationid','=',$locationid)->get();
+                ->where('statistics.locationid','=',$locationid)->where('statistics.id','=',$id)->get();
 
                 $avgSpeed1500m = Statistic::where('deviceid',$user->deviceid)->avg('spd_1500m');
                 $avgSpeed1000m = Statistic::where('deviceid',$user->deviceid)->avg('spd_1000m');
                 $avgSpeed500m = Statistic::where('deviceid',$user->deviceid)->avg('spd_500m');
                 $avgSpeed10m = Statistic::where('deviceid',$user->deviceid)->avg('spd_10m');
 
-                return view ('statistic.statisticsadminviewdetail', ['user' => $user, 'userStatistics' => $userStatistics, 'selectedUserStatistics' => $selectedUserStatistics, 'avgSpeed1500m' => $avgSpeed1500m, 'avgSpeed1000m' => $avgSpeed1000m, 'avgSpeed500m' => $avgSpeed500m,
+                return view ('statistic.statisticsadminviewdetail', ['user' => $user, 'selectedUserStatistics' => $selectedUserStatistics, 'avgSpeed1500m' => $avgSpeed1500m, 'avgSpeed1000m' => $avgSpeed1000m, 'avgSpeed500m' => $avgSpeed500m,
                 'avgSpeed10m' => $avgSpeed10m]);
             }
             else

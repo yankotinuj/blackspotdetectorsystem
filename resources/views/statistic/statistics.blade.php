@@ -100,7 +100,7 @@
                             <div class="card">
                                 <div class="card-header bg-white">
                                     <h5 class="card-title"><b>
-                                        <a data-toggle="collapse" href="#collapse-statisticHistory{{ $statisticHistory->locationid }}" aria-expanded="true" aria-controls="collapse-statisticHistory{{ $statisticHistory->locationid }}" class="collapsed d-block">
+                                        <a data-toggle="collapse" href="#collapse-statisticHistory{{ $statisticHistory->id }}" aria-expanded="true" aria-controls="collapse-statisticHistory{{ $statisticHistory->id }}" class="collapsed d-block">
                                         <i class="fa fa-chevron-down pull-right" aria-hidden="true"></i>
                                         {{ $statisticHistory->locationid }}
                                         </a>
@@ -108,7 +108,7 @@
                                     <h6 class="card-subtitle"><b>Waktu : {{ $statisticHistory->created_at }}</b></h6>
                                 </div>
                                 <!-- Collapse Untuk Data Statistik -->
-                                <div id="collapse-statisticHistory{{ $statisticHistory->locationid }}" class="collapse" aria-labelledby="heading-example">
+                                <div id="collapse-statisticHistory{{ $statisticHistory->id }}" class="collapse" aria-labelledby="heading-example">
                                     <div class="card-body">
                                         <p class="card-text mt-2">{{ $statisticHistory->alamat }}.</p>
                                         <h6 class="card-subtitle mb-2 text-center"><b>Kecepatan Anda</b></h6>
@@ -154,25 +154,25 @@
                                         </div>
                                         <!--Akhir Bagian Card Untuk Rata-rata kecepatan-->
                                         
-                                        <a class="btn btn-success" role="button" data-toggle="collapse" href="#collapse-showChart{{ $statisticHistory->locationid }}" aria-expanded="true" aria-controls="collapse-showChart{{ $statisticHistory->locationid }}">Tampilkan Grafik</a>                            
+                                        <a class="btn btn-success" role="button" data-toggle="collapse" href="#collapse-showChart{{ $statisticHistory->id }}" aria-expanded="true" aria-controls="collapse-showChart{{ $statisticHistory->id }}">Tampilkan Grafik</a>                            
                                     </div>
-                                    <div id="collapse-showChart{{ $statisticHistory->locationid }}" class="collapse" aria-labelledby="heading-example">
+                                    <div id="collapse-showChart{{ $statisticHistory->id }}" class="collapse" aria-labelledby="heading-example">
                                         <div class="card-footer">
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                                             
-                                            <canvas id="showChart{{ $statisticHistory->locationid }}" height="250"></canvas>
+                                            <canvas id="showChart{{ $statisticHistory->id }}" height="250"></canvas>
 
                                             <!--Untuk Menampilkan Grafik-->
                                             <script>
-                                                var ctx = document.getElementById('showChart{{ $statisticHistory->locationid }}').getContext('2d');
+                                                var ctx = document.getElementById('showChart{{ $statisticHistory->id }}').getContext('2d');
                                                 var chart = new Chart(ctx, {
                                                     type: 'horizontalBar',
                                                     data: {
                                                         labels: ['Jarak 1500 M', 'Jarak 1000 M', 'Jarak 500 M', 'Jarak 10 M'],
                                                         datasets: [{
                                                             label: 'Kecepatan dalam KM/J',
-                                                            backgroundColor: 'rgba(56, 193, 114, 0.5)',
-                                                            borderColor: 'rgba(56, 193, 114, 0.5)',
+                                                            backgroundColor: 'rgba(52, 144, 220, 0.5)',
+                                                            borderColor: 'rgba(52, 144, 220, 0.5)',
                                                             borderWidth: 2,
                                                             data: [{{ $statisticHistory->spd_1500m }}, {{ $statisticHistory->spd_1000m }}, {{ $statisticHistory->spd_500m }}, {{ $statisticHistory->spd_10m }}]
                                                         }]

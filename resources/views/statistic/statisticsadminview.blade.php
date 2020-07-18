@@ -18,7 +18,7 @@
                                 <select id="selectLocID" class="form-control">
                                     <option value="#">ID Lokasi</option>
                                 @foreach ($userStatistics as $stat)
-                                    <option value="{{ route('statistics-admin-view-detail',[$user->deviceid,$stat->locationid]) }}">
+                                    <option value="{{ route('statistics-admin-view-detail',[$user->deviceid,$stat->id,$stat->locationid]) }}">
                                         {{ $stat->locationid }} ({{ $stat->created_at }})
                                     </option>
                                 @endforeach
