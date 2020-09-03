@@ -8,7 +8,7 @@
             <h5>ID Lokasi : <b>DRK{{$stringNewNumLocationId}}</b></5>
         </div>
         <div class="card-body">  
-            <form id="tambahlokasi" method="post" action="javascript:void(0)">
+            <form id="tambahlokasi" method="post" action="javascript:void(0)" onsubmit="onSubmitClicked()">
 
                 <div class="form-group">
                     <div class="row">
@@ -42,7 +42,7 @@
                     <label class="form-check-label" for="confirmationCheck">Dengan mencetang checkbox ini, Saya bertanggung jawab dengan data yang di submit.</label>
                 </div>
                 
-                <button type="submit" onclick="onSubmitClicked();" id="submitForm" class="btn btn-success">Simpan</button> &nbsp;
+                <button type="submit" id="submitForm" class="btn btn-success">Simpan</button> &nbsp;
                 <a class="btn btn-primary" href="{{ url()->previous() }}" role="button">Kembali</a> &nbsp;
                 <button type="reset" class="btn btn-danger">Reset</button>
 
@@ -54,7 +54,7 @@
                     };
                     async function onSubmitClicked()
                     {
-                        $("#submitForm").html('Menyimpan...');
+                        $("#submitForm").html('Menyimpan');
                         axios.post('{{ route("save-location") }}', {
                             locationid: 'DRK{{$stringNewNumLocationId}}',
                             lat: jQuery('#lat').val(),
@@ -72,7 +72,7 @@
                         { 
                             console.log(response);
                             $("#submitForm").html('Simpan');
-                            Command: swal("Sukses Menyimpan", "Lokasi Berhasil Ditambahkan. Lokasi yang Anda tambahkan perlu diverifikasi oleh Admin untuk ditampilkan di daftar daerah rawan kecelakaan.", "success");
+                            Command: swal("Sukses Menyimpan!", "Lokasi Berhasil Ditambahkan. Lokasi yang Anda tambahkan perlu diverifikasi oleh Admin untuk ditampilkan di daftar daerah rawan kecelakaan.", "success");
                             setTimeout(function()
                             {
                                 window.location.replace("{{ route('location-by-list') }}"); //Pindah ke halaman sebelumnya
@@ -82,7 +82,7 @@
                         {
                             console.log(error);
                             $("#submitForm").html('Simpan');
-                            Command: swal("Gagal Menyimpan", "Lokasi Gagal Ditambahkan atau Form Belum Lengkap Diisi", "error");
+                            Command: swal("Gagal Menyimpan!", "Lokasi Gagal Ditambahkan atau Form Belum Lengkap Diisi", "error");
                         });
                     }
                 </script>
