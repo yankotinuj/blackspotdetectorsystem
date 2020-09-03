@@ -32,7 +32,7 @@
                 </div>
                 @else
                 <div class="col-sm-4 pb-2 pt-2">
-                    <a class="btn btn-primary btn-block" href="{{ route('add-location') }}" role="button" data-toggle="modal" data-target="#modalTambahLokasi">Tambah Lokasi</a>
+                    <a id ="addLocation" class="btn btn-primary btn-block" href="{{ route('add-location') }}">Tambah Lokasi</a>
                 </div>
                 @endif
             </div>
@@ -81,7 +81,41 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function(){
+            $("#addLocation").on('click', function(e){
+                e.preventDefault();
+
+                var href = $(this).attr('href');
+
+                swal(
+                    {
+                        title: "Perhatian!",
+                        text: "Bijaklah dalam menambahkan lokasi daerah rawan kecelakaan. Pastikan lokasi yang akan ditambahkan benar-benar merupakan daerah rawan kecelakaan yang memang belum tersimpan pada Aplikasi Blackspot Detector System.",
+                        icon: "warning",
+                        buttons: {
+                                    cancel: "Kembali",
+                                    confirm: "Lanjutkan",
+                                },
+                        closeOnClickOutside: false,
+                        closeOnEsc: false,
+                })
+                .then((willGoToAddLocationPage) => {
+                    if (willGoToAddLocationPage)
+                    {
+                        window.location.href = href;
+                    }
+                    else
+                    {
+                        swal("Aksi Dibatalkan!", "Anda batal untuk menambahkan lokasi baru.", "info");
+                    }
+                });
+            });
+        });
+    </script>
+
     <!-- Modal -->
+    <!--
     <div class="modal fade" id="modalTambahLokasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -102,6 +136,7 @@
             </div>
         </div>
     </div>
+    -->
 
 </div>
 @endsection
